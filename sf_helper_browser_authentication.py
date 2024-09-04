@@ -4,6 +4,7 @@ SNOWFLAKE_USER_EMAIL="<your_email_addres>"
 SNOWFLAKE_WAREHOUSE="<your_warehouse>"
 SNOWFLAKE_DATABASE="<your_database>"
 SNOWFLAKE_ACCOUNT='<your_account>'
+SNOWFLAKE_ROLE='<your_role>'
 
 class SnowflakeHelper:
     """
@@ -31,6 +32,7 @@ class SnowflakeHelper:
             snowflake.connector.connection: A connection to Snowflake.
         """
         cs = self.ctx.cursor()
+        cs.execute(f"USE ROLE {SNOWFLAKE_ROLE}")
         cs.execute(f"USE DATABASE {SNOWFLAKE_DATABASE}")
         cs.execute(f"USE WAREHOUSE {SNOWFLAKE_WAREHOUSE}") 
 
